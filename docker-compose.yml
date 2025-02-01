@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  celery:
+    image: celery:latest
+    volumes:
+      - ./app:/app  # Mount the app directory
+    command: celery -A app.tasks.app worker --loglevel=info
+    depends_on:
+      - redis
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0

@@ -1,0 +1,10 @@
+my_project/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── crud.py
+│   ├── schemas.py
+│   └── database.py
+├── requirements.txt
+└── README.md

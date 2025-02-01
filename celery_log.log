@@ -1,0 +1,35 @@
+2025-02-01 18:57:05,140 - app.tasks - ERROR - Error logging access: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: INSERT INTO access_log (text, created_at) VALUES (?, ?)]
+[parameters: (['GET /reviews/trends'], '2025-02-01 13:27:05.140682')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-01 18:59:12,796 - app.tasks - ERROR - Error logging access: No module named 'ipdb'
+2025-02-01 19:00:01,955 - app.tasks - ERROR - Error logging access: No module named 'ipdb'
+2025-02-01 19:04:19,053 - app.tasks - ERROR - Error logging access: 
+2025-02-01 19:09:05,208 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:09:05,224 - app.tasks - ERROR - Error logging access: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: INSERT INTO access_log (text, created_at) VALUES (?, ?)]
+[parameters: (['GET /reviews/trends'], '2025-02-01 13:39:05.208506')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-01 19:09:06,170 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:09:06,178 - app.tasks - ERROR - Error logging access: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: INSERT INTO access_log (text, created_at) VALUES (?, ?)]
+[parameters: (['GET /reviews/trends'], '2025-02-01 13:39:06.178934')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-01 19:15:07,232 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:15:07,232 - app.tasks - ERROR - Error logging access: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: INSERT INTO access_log (text, created_at) VALUES (?, ?)]
+[parameters: (['GET /reviews/trends'], '2025-02-01 13:45:07.232237')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-01 19:18:29,289 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:18:56,840 - app.tasks - ERROR - Error logging access: (sqlite3.InterfaceError) Error binding parameter 0 - probably unsupported type.
+[SQL: INSERT INTO access_log (text, created_at) VALUES (?, ?)]
+[parameters: (['GET /reviews/trends'], '2025-02-01 13:48:38.578253')]
+(Background on this error at: https://sqlalche.me/e/20/rvf5)
+2025-02-01 19:21:07,621 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:21:12,071 - app.tasks - INFO - Access successfully logged for: ['GET /reviews/trends']
+2025-02-01 19:31:26,457 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:31:26,478 - app.tasks - INFO - Access successfully logged for: ['GET /reviews/trends']
+2025-02-01 19:31:52,332 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:31:52,349 - app.tasks - INFO - Access successfully logged for: ['GET /reviews/trends']
+2025-02-01 19:32:22,530 - app.tasks - INFO - Received API call: ['GET /reviews/trends']
+2025-02-01 19:32:22,558 - app.tasks - INFO - Access successfully logged for: ['GET /reviews/trends']
