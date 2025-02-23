@@ -1,18 +1,28 @@
-from sqlalchemy.orm import Session
-from sqlalchemy import func
-from .models import ReviewHistory, Category
-from typing import List
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from .models import Files, Image
 
+async def get_request_by_id(db: AsyncSession, request_id: str):
+    """Fetch a processing request by request_id."""
+    result = await db.execute(select(Files).filter(Files.request_id == request_id))
+    return result.scalars().first()
 
-def get_reviews_trends(db: Session):
-    return db.query(
-        Category.id,
-        Category.name,
-        Category.description,
-        func.avg(ReviewHistory.stars).label('average_stars'),
-        func.count(ReviewHistory.id).label('total_reviews')
-    ).join(ReviewHistory).group_by(Category.id).order_by(func.avg(ReviewHistory.stars).desc()).limit(5).all()
+async def update_request_status(db: AsyncSession, request_id: str, status: str, processed_csv_path: str = None):
+    """Update the status of an image processing request."""
+    request = await get_request_by_id(db, request_id)
+    if request:
+        request.status = status
+        if processed_csv_path:
+            request.processed_csv_path = processed_csv_path
+        await db.commit()
 
+async def store_image(db: AsyncSession, request_id: str, product_name: str, input_url: str, output_path: str = None):
+    """Insert an image record into the database."""
+    new_image = Image(request_id=request_id, product_name=product_name, input_url=input_url, output_path=output_path)
+    db.add(new_image)
+    await db.commit()
 
-def get_reviews_for_category(db: Session, category_id: int, offset: int, limit: int):
-    return db.query(ReviewHistory).filter(ReviewHistory.category_id == category_id).order_by(ReviewHistory.created_at.desc()).offset(offset).limit(limit).all()
+async def get_images_by_request_id(db: AsyncSession, request_id: str):
+    """Fetch all images for a specific processing request."""
+    result = await db.execute(select(Image).filter(Image.request_id == request_id))
+    return result.scalars().all()

@@ -1,16 +1,15 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     REDIS_BROKER_URL: str
     OPENAI_API_KEY: str
-    DATABASE_URL: str  # Example for database URL
-    # Other fields...
+    DATABASE_URL: str
+    UPLOAD_FOLDER: str = "uploads"
+    PROCESSED_IMAGE_FOLDER: str = "processed_images"
+    PROCESSED_CSV_FOLDER: str = "processed_csv"
+    WEBHOOK_URL: str = "http://localhost:8000/webhook"
 
-    class Config:
-        env_file = ".env"  # Tells Pydantic to load variables from the .env file
-        env_file_encoding = "utf-8"
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
+# Initialize settings
 settings = Settings()
-
-print(settings.REDIS_BROKER_URL)  # This will print the value from the .env file
-print(settings.OPENAI_API_KEY)  

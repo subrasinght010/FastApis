@@ -1,27 +1,15 @@
 from pydantic import BaseModel
-from datetime import datetime
-from typing import Optional
+from typing import List, Optional
 
-class CategoryTrendResponse(BaseModel):
-    id: int
-    name: str
-    description: str
-    average_stars: float
-    total_reviews: int
+class ImageSchema(BaseModel):
+    product_name: str
+    input_url: str
+    output_path: Optional[str] = None
+    status: str
 
-    class Config:
-        from_attributes = True  # Updated to match Pydantic V2
-
-
-class ReviewResponse(BaseModel):
-    id: int
-    text: str
-    stars: int
-    review_id: str
-    created_at: datetime
-    tone: Optional[str] = "N/A"
-    sentiment: Optional[str] = "N/A"
-    category_id: int
-
-    class Config:
-        from_attributes = True  # Updated to match Pydantic V2
+class FileSchema(BaseModel):
+    request_id: str
+    filename: str
+    status: str
+    processed_csv_path: Optional[str] = None
+    images: List[ImageSchema] = []
