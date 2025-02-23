@@ -3,7 +3,7 @@ name: Deploy FastAPI
 on:
   push:
     branches:
-      - main  # Change to your default branch
+      - main  # Change this to your default branch if needed
 
 jobs:
   deploy:
@@ -15,15 +15,28 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'  # Use the Python version you need
+          python-version: '3.10'  # Adjust as needed
 
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: Deploy to Heroku
+      - name: Install Heroku CLI
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
+
+      - name: Authenticate with Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
-          git remote add heroku https://git.heroku.com/your-app-name.git
-          git push heroku main
+          echo "machine api.heroku.com login heroku password $HEROKU_API_KEY" > ~/.netrc
+          echo "machine git.heroku.com login heroku password $HEROKU_API_KEY" >> ~/.netrc
+          chmod 600 ~/.netrc
+
+      - name: Add Heroku Git Remote
+        run: |
+          heroku git:remote -a your-app-name
+
+      - name: Deploy to Heroku
+        run: |
+          git push heroku main --force
